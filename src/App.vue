@@ -1,13 +1,19 @@
 <template>
   <div>
     <div class="header-img use-flexbox text-center overflow-hidden">
-      <img src="./assets/logo-sc.png" class="rounded" alt="Responsive image">
+      <img src="./logo-sc.png" class="rounded" alt="Responsive image">
     </div>
     <hr>
     <div class="body-conten">
       <button v-on:click="userFilterKey = 'all'" :class="{ active: userFilterKey == 'all' }" class="btn btn-outline-warning ">All</button>
       <button v-on:click="userFilterKey = 'selectds'" :class="{ active: userFilterKey == 'selectds' }" class="btn btn-outline-warning ">資料科學</button>
+      <button v-on:click="userFilterKey = 'selectdp'" :class="{ active: userFilterKey == 'selectdp' }" class="btn btn-outline-warning ">深度學習</button>
       <button v-on:click="userFilterKey = 'selectde'" :class="{ active: userFilterKey == 'selectde' }" class="btn btn-outline-warning ">資料工程</button>
+      <button v-on:click="userFilterKey = 'selectjv'" :class="{ active: userFilterKey == 'selectjv' }" class="btn btn-outline-warning ">Java</button>
+      <button v-on:click="userFilterKey = 'selectcd'" :class="{ active: userFilterKey == 'selectcd' }" class="btn btn-outline-warning ">Cloud</button>
+      <button v-on:click="userFilterKey = 'selectpy'" :class="{ active: userFilterKey == 'selectpy' }" class="btn btn-outline-warning ">Python</button>
+      <button v-on:click="userFilterKey = 'selectfe'" :class="{ active: userFilterKey == 'selectfe' }" class="btn btn-outline-warning ">前端</button>
+      <button v-on:click="userFilterKey = 'selectbe'" :class="{ active: userFilterKey == 'selectbe' }" class="btn btn-outline-warning ">後端</button>
       <h2 class="card-text total-count"> 總共{{userFilter.length}}筆</h2>
       <div class="card text-center"  v-for="(job,index) in userFilter" :key="job.index">
         <div class="card-body">
@@ -19,7 +25,7 @@
           <div class="card-text simplejd">
             <h5>工作描述</h5> {{job.simpleJD}}</div>
           <div class="card-text other">
-            <h5>技能要求</h5> {{job.detail.other}}</div>
+            <h5>工作要求</h5> {{job.detail.other}}</div>
           </div>
           <p>工作經驗{{job.detail.experience}}｜ 需求 {{job.detail.number}}</p>
           <h5>聯絡人</h5><p>{{job.detail.contact}}</p>
@@ -36,7 +42,7 @@
 
 
 <script>
-import Jobs from './assets/job.json'
+import Jobs from './job.json'
 
 export default {
   components: {
@@ -55,10 +61,36 @@ export default {
       return this.jobs
     },
     selectds() {
-      return this.jobs.filter((item) => item.key ==='資料科學')
+      let ds = '資料科學|資料分析|數據分析'
+      return this.jobs.filter((item) => item.jobName.match(ds))
     },
     selectde() {
-      return this.jobs.filter((item) => item.key ==='資料工程')
+      let de = '資料工程|ETL|Java|Scala|資料處理|數據處理'
+      return this.jobs.filter((item) => item.jobName.match(de))
+    },
+    selectdp() {
+      let dp = '深度學習';
+      return this.jobs.filter((item) => item.jobName.match(dp))
+    },
+    selectjv() {
+      let jv = 'JAVA|Java|java';
+      return this.jobs.filter((item) => item.jobName.match(jv))
+    },
+    selectcd() {
+      let cd = 'cloud|Cloud|雲端';
+      return this.jobs.filter((item) => item.jobName.match(cd))
+    },
+    selectpy() {
+      let py = 'PYTHON|Python|python';
+      return this.jobs.filter((item) => item.jobName.match(py))
+    },
+    selectfe() {
+      let fe = 'Front|前端';
+      return this.jobs.filter((item) => item.jobName.match(fe))
+    },
+    selectbe() {
+      let be = 'Node|後端|全端';
+      return this.jobs.filter((item) => item.jobName.match(be))
     },
   },
 }
