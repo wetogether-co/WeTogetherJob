@@ -1,7 +1,8 @@
 <template>
   <div>
     <div class="header-img use-flexbox text-center overflow-hidden">
-      <img src="./logo-sc.png" class="rounded" alt="Responsive image">
+      <!-- <img src="./logo-sc.png" class="rounded" alt="Responsive image"> -->
+      <img src="./static/imgs/logo-sc.png" class="rounded" alt="Responsive image">
     </div>
     <hr>
     <div class="body-conten">
