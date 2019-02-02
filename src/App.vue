@@ -2,7 +2,7 @@
   <div>
     <div class="header-img use-flexbox text-center overflow-hidden">
       <!-- <img src="./logo-sc.png" class="rounded" alt="Responsive image"> -->
-      <img src="./static/imgs/logo-sc.png" class="rounded" alt="Responsive image">
+      <img src="./logo-sc.png" class="rounded" alt="Responsive image">
     </div>
     <hr>
     <div class="body-conten">
@@ -10,8 +10,9 @@
       <button v-on:click="userFilterKey = 'selectds'" :class="{ active: userFilterKey == 'selectds' }" class="btn btn-outline-warning ">資料科學</button>
       <button v-on:click="userFilterKey = 'selectdp'" :class="{ active: userFilterKey == 'selectdp' }" class="btn btn-outline-warning ">深度學習</button>
       <button v-on:click="userFilterKey = 'selectde'" :class="{ active: userFilterKey == 'selectde' }" class="btn btn-outline-warning ">資料工程</button>
-      <button v-on:click="userFilterKey = 'selectjv'" :class="{ active: userFilterKey == 'selectjv' }" class="btn btn-outline-warning ">Java</button>
       <button v-on:click="userFilterKey = 'selectcd'" :class="{ active: userFilterKey == 'selectcd' }" class="btn btn-outline-warning ">Cloud</button>
+      <button v-on:click="userFilterKey = 'selecthd'" :class="{ active: userFilterKey == 'selecthd' }" class="btn btn-outline-warning ">Hadoop</button>
+      <button v-on:click="userFilterKey = 'selectjv'" :class="{ active: userFilterKey == 'selectjv' }" class="btn btn-outline-warning ">Java</button>
       <button v-on:click="userFilterKey = 'selectpy'" :class="{ active: userFilterKey == 'selectpy' }" class="btn btn-outline-warning ">Python</button>
       <button v-on:click="userFilterKey = 'selectfe'" :class="{ active: userFilterKey == 'selectfe' }" class="btn btn-outline-warning ">前端</button>
       <button v-on:click="userFilterKey = 'selectbe'" :class="{ active: userFilterKey == 'selectbe' }" class="btn btn-outline-warning ">後端</button>
@@ -20,7 +21,11 @@
         <div class="card-body">
           <p class="card-text">{{job.companyName}}</p>
           <div class="jobtitle">
-          <h5 class="card-title jobname">{{job.jobName}}</h5>
+          <h5 class="card-title jobname">
+          <p v-show="recentjob.today === job.detail.datePosted" class="btn btn-outline-warning btn-source btn-sm recent" >NEW</p>
+          <p v-show="recentjob.today !== job.detail.datePosted" class="btn btn-outline-warning btn-source btn-sm notrecent" >{{job.detail.datePosted}}</p>
+            {{job.jobName}}
+          </h5>
           </div>
           <div class="card-text required">
           <div class="card-text simplejd">
@@ -52,6 +57,9 @@ export default {
     return {
       jobs: Jobs,
       userFilterKey: 'all',
+      recentjob: {
+        today:'2019-02-01',
+      }
     }
   },
   computed: {
@@ -93,6 +101,10 @@ export default {
       let be = 'Node|後端|全端';
       return this.jobs.filter((item) => item.jobName.match(be))
     },
+    selecthd() {
+      let hd = 'HADOOP|Hadoop|hadoop';
+      return this.jobs.filter((item) => item.simpleJD.match(hd))
+    },
   },
 }
 </script>
@@ -127,6 +139,25 @@ img{
   text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.jobname{
+  vertical-align: center;
+}
+
+.recent{
+  margin-bottom: 2px;
+  margin-right: 10px !important;
+  background-color: #FDBD4A;
+  color: white;
+}
+
+.notrecent{
+  margin-bottom: 2px;
+  margin-right: 10px !important;
+}
+.btn-source{
+  cursor: default !important;
 }
 .btn-outline-warning{
   margin-top: -2px;
