@@ -16,10 +16,22 @@
       <button v-on:click="userFilterKey = 'selectpy'" :class="{ active: userFilterKey == 'selectpy' }" class="btn btn-outline-warning ">Python</button>
       <button v-on:click="userFilterKey = 'selectfe'" :class="{ active: userFilterKey == 'selectfe' }" class="btn btn-outline-warning ">前端</button>
       <button v-on:click="userFilterKey = 'selectbe'" :class="{ active: userFilterKey == 'selectbe' }" class="btn btn-outline-warning ">後端</button>
-      <h2 class="card-text total-count"> 總共{{userFilter.length}}筆</h2>
+      <h2 class="card-text filterkey" v-show="userFilterKey==='all'">全部職缺</h2>
+      <h2 class="card-text filterkey" v-show="userFilterKey==='selectds'">資料科學</h2>
+      <h2 class="card-text filterkey" v-show="userFilterKey==='selectdp'">深度學習</h2>
+      <h2 class="card-text filterkey" v-show="userFilterKey==='selectde'">資料工程</h2>
+      <h2 class="card-text filterkey" v-show="userFilterKey==='selectcd'">Cloud</h2>
+      <h2 class="card-text filterkey" v-show="userFilterKey==='selecthd'">Hadoop</h2>
+      <h2 class="card-text filterkey" v-show="userFilterKey==='selectjv'">Java</h2>
+      <h2 class="card-text filterkey" v-show="userFilterKey==='selectpy'">Python</h2>
+      <h2 class="card-text filterkey" v-show="userFilterKey==='selectfe'">前端</h2>
+      <h2 class="card-text filterkey" v-show="userFilterKey==='selectbe'">後端</h2>
+      <h4 class="card-text total-count"> 總共{{userFilter.length}}筆</h4>
       <div class="card text-center"  v-for="(job,index) in userFilter" :key="job.index">
         <div class="card-body">
-          <p class="card-text">{{job.companyName}}</p>
+          <p class="card-text">
+          <button class="btn btn-outline-warning btn-source btn-sm" >{{job.source}}</button>            
+            {{job.companyName}}</p>
           <div class="jobtitle">
           <h5 class="card-title jobname">
           <p v-show="recentjob.today === job.detail.datePosted" class="btn btn-outline-warning btn-source btn-sm recent" >NEW</p>
@@ -29,15 +41,14 @@
           </div>
           <div class="card-text required">
           <div class="card-text simplejd">
-            <h5>工作描述</h5> {{job.simpleJD}}</div>
+            <h5>工作描述</h5> <p class="content-text">{{job.simpleJD}}</p></div>
           <div class="card-text other">
-            <h5>工作要求</h5> {{job.detail.other}}</div>
+            <h5>工作要求</h5> <p class="content-text">{{job.detail.other}}</p></div>
           </div>
           <p>工作經驗{{job.detail.experience}}｜ 需求 {{job.detail.number}}</p>
           <h5>聯絡人</h5><p>{{job.detail.contact}}</p>
-          <a :href="job.jobLink" target="_blank" class="btn btn-outline-warning btn-sm">查看職缺</a>
-          <a :href="job.companyLink" target="_blank" class="btn btn-outline-warning btn-sm" >查看公司</a>
-          <button class="btn btn-outline-warning btn-source btn-sm" >{{job.source}}</button>
+          <a :href="job.jobLink" target="_blank" class="btn btn-outline-warning btn-sm btn-link">查看職缺</a>
+          <a :href="job.companyLink" target="_blank" class="btn btn-outline-warning btn-sm btn-link" >查看公司</a>
 
         </div>
       </div>
@@ -59,7 +70,7 @@ export default {
       userFilterKey: 'all',
       recentjob: {
         today:'2019-02-01',
-      }
+      },
     }
   },
   computed: {
@@ -74,7 +85,7 @@ export default {
       return this.jobs.filter((item) => item.jobName.match(ds))
     },
     selectde() {
-      let de = '資料工程|ETL|Java|Scala|資料處理|數據處理'
+      let de = '資料工程|ETL|資料處理|數據處理|Data Engineer|Big Data'
       return this.jobs.filter((item) => item.jobName.match(de))
     },
     selectdp() {
@@ -135,6 +146,11 @@ img{
 .header-img{
   background-color: #FDBD4A;
 }
+.filterkey{
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 .total-count{
   text-align: center;
   margin-top: 10px;
@@ -148,23 +164,41 @@ img{
 .recent{
   margin-bottom: 2px;
   margin-right: 10px !important;
-  background-color: #FDBD4A;
-  color: white;
+  background-color: #FDC10A;
+  color: black !important;
+  font-weight: 700;
 }
 
 .notrecent{
   margin-bottom: 2px;
   margin-right: 10px !important;
+  border-color: #fff !important;
+  font-weight: 700;
+  color: rgb(254, 190, 0);
 }
 .btn-source{
   cursor: default !important;
+  margin-right: 10px !important;
+  border-color: #fff !important;
+  font-weight: 400;
+  color: rgb(254, 190, 0);
 }
 .btn-outline-warning{
   margin-top: -2px;
   margin-right: -6px;
+  
 }
 .btn-outline-warning:hover{
   background-color: #FDBD4A;
+}
+.btn-link{
+  color: black;
+  border: 1px solid #FDBD4A;
+  margin-right: -6px;
+}
+.btn-link:hover{
+  text-decoration:none;
+  color: black;
 }
 .required{
   width: 510px;
@@ -172,6 +206,7 @@ img{
 }
 .simplejd{
   padding: 10px;
+  text-align: left;
 }
 .other{
   padding: 10px;
@@ -236,5 +271,7 @@ img{
   width: 44px;
   font-size: 14px;
 }
+
+
 
 </style>
