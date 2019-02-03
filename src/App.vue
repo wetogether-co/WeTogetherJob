@@ -30,12 +30,12 @@
       <div class="card text-center"  v-for="(job,index) in userFilter" :key="job.index">
         <div class="card-body">
           <p class="card-text">
-          <button class="btn btn-outline-warning btn-source btn-sm" >{{job.source}}</button>            
+          <button class="btn btn-outline-warning btn-source recent btn-sm" >{{job.source}}</button>            
             {{job.companyName}}</p>
           <div class="jobtitle">
           <h5 class="card-title jobname">
           <p v-show="recentjob.today === job.detail.datePosted" class="btn btn-outline-warning btn-source btn-sm recent" >NEW</p>
-          <p v-show="recentjob.today !== job.detail.datePosted" class="btn btn-outline-warning btn-source btn-sm notrecent" >{{job.detail.datePosted}}</p>
+          <p v-show="recentjob.today !== job.detail.datePosted" class="btn btn-outline-warning btn-source btn-sm recent" >{{job.detail.datePosted}}</p>
             {{job.jobName}}
           </h5>
           </div>
@@ -162,26 +162,22 @@ img{
 }
 
 .recent{
+  
+}
+
+.notrecent{
+
+}
+
+.btn-source{
+  cursor: default !important;
+  border-color: #fff !important;
+  font-weight: 400;
   margin-bottom: 2px;
   margin-right: 10px !important;
   background-color: #FDC10A;
   color: black !important;
   font-weight: 700;
-}
-
-.notrecent{
-  margin-bottom: 2px;
-  margin-right: 10px !important;
-  border-color: #fff !important;
-  font-weight: 700;
-  color: rgb(254, 190, 0);
-}
-.btn-source{
-  cursor: default !important;
-  margin-right: 10px !important;
-  border-color: #fff !important;
-  font-weight: 400;
-  color: rgb(254, 190, 0);
 }
 .btn-outline-warning{
   margin-top: -2px;
