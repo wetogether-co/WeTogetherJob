@@ -5,7 +5,9 @@
       <img src="./logo-sc.png" class="rounded" alt="Responsive image">
     </div>
     <hr>
-    <div class="body-conten">
+    <div class="body-content">
+      <div class="sticky-top">
+      <!-- <button v-on:click="aboout = 'about'" :class="{ active: about == 'about' }" class="btn btn-outline-warning ">關於Wetogether</button> -->
       <button v-on:click="userFilterKey = 'all'" :class="{ active: userFilterKey == 'all' }" class="btn btn-outline-warning ">All</button>
       <button v-on:click="userFilterKey = 'selectds'" :class="{ active: userFilterKey == 'selectds' }" class="btn btn-outline-warning ">資料科學</button>
       <button v-on:click="userFilterKey = 'selectdp'" :class="{ active: userFilterKey == 'selectdp' }" class="btn btn-outline-warning ">深度學習</button>
@@ -16,6 +18,8 @@
       <button v-on:click="userFilterKey = 'selectpy'" :class="{ active: userFilterKey == 'selectpy' }" class="btn btn-outline-warning ">Python</button>
       <button v-on:click="userFilterKey = 'selectfe'" :class="{ active: userFilterKey == 'selectfe' }" class="btn btn-outline-warning ">前端</button>
       <button v-on:click="userFilterKey = 'selectbe'" :class="{ active: userFilterKey == 'selectbe' }" class="btn btn-outline-warning ">後端</button>
+      </div>
+      <h2 class="card-text filterkey" v-show="about==='true'">Hi</h2>
       <h2 class="card-text filterkey" v-show="userFilterKey==='all'">全部職缺</h2>
       <h2 class="card-text filterkey" v-show="userFilterKey==='selectds'">資料科學</h2>
       <h2 class="card-text filterkey" v-show="userFilterKey==='selectdp'">深度學習</h2>
@@ -26,34 +30,34 @@
       <h2 class="card-text filterkey" v-show="userFilterKey==='selectpy'">Python</h2>
       <h2 class="card-text filterkey" v-show="userFilterKey==='selectfe'">前端</h2>
       <h2 class="card-text filterkey" v-show="userFilterKey==='selectbe'">後端</h2>
-      <h4 class="card-text total-count"> 總共{{userFilter.length}}筆</h4>
-      <div class="card text-center"  v-for="(job,index) in userFilter" :key="job.index">
+      <h4 class="card-text total-count" v-show="userFilterKey!=='about'"> 總共{{userFilter.length}}筆</h4>
+      
+      
+<div class="card text-center" v-for="(job,index) in userFilter" :key="job.index">
         <div class="card-body">
           <p class="card-text">
           <button class="btn btn-outline-warning btn-source recent btn-sm" >{{job.source}}</button>            
             {{job.companyName}}</p>
           <div class="jobtitle">
-          <h5 class="card-title jobname">
-          <p v-show="recentjob.today === job.detail.datePosted" class="btn btn-outline-warning btn-source btn-sm recent" >NEW</p>
-          <p v-show="recentjob.today !== job.detail.datePosted" class="btn btn-outline-warning btn-source btn-sm recent" >{{job.detail.datePosted}}</p>
-            {{job.jobName}}
-          </h5>
+            <h5 class="card-title jobname">
+              <p v-show="recentjob.today === job.detail.datePosted" class="btn btn-outline-warning btn-source btn-sm recent" >NEW</p>
+              <p v-show="recentjob.today !== job.detail.datePosted" class="btn btn-outline-warning btn-source btn-sm recent" >{{job.detail.datePosted}}</p>
+              {{job.jobName}}
+            </h5>
           </div>
           <div class="card-text required">
-          <div class="card-text simplejd">
-            <h5>工作描述</h5> <p class="content-text">{{job.simpleJD}}</p></div>
-          <div class="card-text other">
-            <h5>工作要求</h5> <p class="content-text">{{job.detail.other}}</p></div>
+            <div class="card-text">
+              <h5 class="content-title">工作描述</h5> <p class="simplejd content-text">{{job.simpleJD}}</p></div>
+            <div class="card-text other">
+            <h5 class="content-title">工作要求</h5> <p class="content-text">{{job.detail.other}}</p></div>
           </div>
-          <p>工作經驗{{job.detail.experience}}｜ 需求 {{job.detail.number}}</p>
-          <h5>聯絡人</h5><p>{{job.detail.contact}}</p>
-          <a :href="job.jobLink" target="_blank" class="btn btn-outline-warning btn-sm btn-link">查看職缺</a>
-          <a :href="job.companyLink" target="_blank" class="btn btn-outline-warning btn-sm btn-link" >查看公司</a>
-
-        </div>
+        <p>工作經驗{{job.detail.experience}}｜ 需求 {{job.detail.number}}</p>
+        <h5>聯絡人</h5><p>{{job.detail.contact}}</p>
+        <a :href="job.jobLink" target="_blank" class="btn btn-outline-warning btn-sm btn-link">查看職缺</a>
+        <a :href="job.companyLink" target="_blank" class="btn btn-outline-warning btn-sm btn-link" >查看公司</a>
+      </div>
       </div>
     </div>
-    <div class="footer"></div>
   </div>
 </template>
 
@@ -138,6 +142,9 @@ hr{
   padding: 0;
   background-color: #FDBD4A;
 }
+.footer-copyright{
+  background-color: #FDBD4A;
+}
 
 img{
   width: 50%;
@@ -175,14 +182,16 @@ img{
   font-weight: 400;
   margin-bottom: 2px;
   margin-right: 10px !important;
-  background-color: #FDC10A;
+  background-color: #FDC10A !important;
   color: black !important;
   font-weight: 700;
 }
 .btn-outline-warning{
   margin-top: -2px;
   margin-right: -6px;
-  
+  background-color: rgb(255, 225, 168);
+  color: black;
+  border-color: rgb(255, 225, 168);
 }
 .btn-outline-warning:hover{
   background-color: #FDBD4A;
@@ -191,6 +200,7 @@ img{
   color: black;
   border: 1px solid #FDBD4A;
   margin-right: -6px;
+  background-color: #fff;
 }
 .btn-link:hover{
   text-decoration:none;
@@ -268,6 +278,8 @@ img{
   font-size: 14px;
 }
 
-
+.fixed-bottom{
+  margin-top: 500px;
+}
 
 </style>
