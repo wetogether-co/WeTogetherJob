@@ -16,6 +16,14 @@ self.__precacheManifest = [
     "url": "https://job.wetogether.co/css/chunk-1a79240c.662d1190.css"
   },
   {
+    "revision": "f7d7d19c2f3d83f71970",
+    "url": "https://job.wetogether.co/css/chunk-305d1e3e.cf604c0b.css"
+  },
+  {
+    "revision": "f7d7d19c2f3d83f71970",
+    "url": "https://job.wetogether.co/js/chunk-305d1e3e.3148aa63.js"
+  },
+  {
     "revision": "e34c18475b23f59b82b3",
     "url": "https://job.wetogether.co/css/chunk-6d220788.e87d8fa1.css"
   },
@@ -32,16 +40,8 @@ self.__precacheManifest = [
     "url": "https://job.wetogether.co/js/chunk-709bd90a.6b96b8c5.js"
   },
   {
-    "revision": "59cbd954433ff0a99e0b",
-    "url": "https://job.wetogether.co/css/chunk-bb1723bc.9c46c1be.css"
-  },
-  {
-    "revision": "59cbd954433ff0a99e0b",
-    "url": "https://job.wetogether.co/js/chunk-bb1723bc.46ed186f.js"
-  },
-  {
-    "revision": "2480220f7054faac27c4",
-    "url": "https://job.wetogether.co/js/app.ab0619db.js"
+    "revision": "aeebadf7c0860ece1c0e",
+    "url": "https://job.wetogether.co/js/app.8eb878a3.js"
   },
   {
     "revision": "fea85f081b4298406502",
@@ -68,11 +68,11 @@ self.__precacheManifest = [
     "url": "https://job.wetogether.co/img/iconNobgc.4e23c20d.png"
   },
   {
-    "revision": "39acc54c473a9f0c8a75ffc8b7178a5e",
+    "revision": "3ddb5e8742b7998507a431d559778758",
     "url": "https://job.wetogether.co/index.html"
   },
   {
-    "revision": "2480220f7054faac27c4",
+    "revision": "aeebadf7c0860ece1c0e",
     "url": "https://job.wetogether.co/css/app.d5945f26.css"
   },
   {
