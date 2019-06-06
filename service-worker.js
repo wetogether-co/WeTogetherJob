@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "https://job.wetogether.co/precache-manifest.f283f5c14472f543496cf8e4117f56fd.js"
+  "https://job.wetogether.co/precache-manifest.85a694423541c254513968dac98951a3.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "wetogetherjob"});
